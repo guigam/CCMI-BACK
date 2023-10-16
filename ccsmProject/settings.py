@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+import pymysql
+
 
 from pathlib import Path
 # import os
@@ -29,6 +31,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+pymysql.install_as_MySQLdb()
 # Application definition
 
 INSTALLED_APPS = [
@@ -98,28 +101,31 @@ WSGI_APPLICATION = 'ccsmProject.wsgi.application'
 #         'name': 'mongodb+srv://guigam:Ammoura2016@cluster0.swcqq.mongodb.net/?retryWrites=true&w=majority',
 #     }
 # }
-DATABASES = {
-        'default': {
-            'ENGINE': 'djongo',
-            'NAME': 'ccsm',
-            # 'ENFORCE_SCHEMA': False,
-            'CLIENT': {
-                'host': 'mongodb+srv://guigam:Ammoura2016@cluster0.swcqq.mongodb.net/?retryWrites=true&w=majority'
-            }
-        }
-}
-
-
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'ccmi',
-#         'USER': 'guigam',
-#         'PASSWORD': 'ccmi2023',
-#         'HOST':'guigam.mysql.pythonanywhere-services.com',
-#         'PORT':'3306',
-#     }
+#         'default': {
+#             'ENGINE': 'djongo',
+#             'NAME': 'ccsm',
+#             # 'ENFORCE_SCHEMA': False,
+#             'CLIENT': {
+#                 'host': 'mongodb+srv://guigam:Ammoura2016@cluster0.swcqq.mongodb.net/?retryWrites=true&w=majority'
+#             }
+#         }
 # }
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ccmi',
+        'USER': 'guigam',
+        'PASSWORD': 'ccmiadmin',
+        'HOST': 'guigam.mysql.pythonanywhere-services.com', # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': 'SET innodb_strict_mode=1',
+        },
+    }
+}
 
 # DATABASES = {
 #     'default': {
