@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Actualite, Service
+from .models import Actualite
 
 # Register your models here.
 admin.site.register(Actualite)
-admin.site.register(Service)

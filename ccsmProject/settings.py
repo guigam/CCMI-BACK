@@ -92,12 +92,45 @@ WSGI_APPLICATION = 'ccsmProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'name': 'mongodb+srv://guigam:Ammoura2016@cluster0.swcqq.mongodb.net/?retryWrites=true&w=majority',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'name': 'ccsmdb',
-    }
+        'default': {
+            'ENGINE': 'djongo',
+            'NAME': 'ccsm',
+            # 'ENFORCE_SCHEMA': False,
+            'CLIENT': {
+                'host': 'mongodb+srv://guigam:Ammoura2016@cluster0.swcqq.mongodb.net/?retryWrites=true&w=majority'
+            }
+        }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'ccmi',
+#         'USER': 'guigam',
+#         'PASSWORD': 'ccmi2023',
+#         'HOST':'guigam.mysql.pythonanywhere-services.com',
+#         'PORT':'3306',
+#     }
+# }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.oracle',
+#         'NAME': 'ccmi',
+#         'USER': 'guigam',
+#         'PASSWORD': 'ccmi2023',
+#         'HOST': 'guigam.mysql.pythonanywhere-services.com',
+#         'PORT': '1521',
+#     }
+# }
 
 
 # Password validation
