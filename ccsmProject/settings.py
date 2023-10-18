@@ -196,19 +196,19 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-from google.oauth2 import service_account
-GS_CREDENTIAL = service_account.Credentials.from_service_account_file(
-    os.path.join(BASE_DIR/'credential.json')
-)
-
-
-
-DEFAULT_FILE_STORAGE='storages.backends.gcloud.GoogleCloudStorage'
-GS_PROJECT_ID = 'ccsm-402016'
-GS_BUCKET_NAME = 'ccmidb'
-MEDIA_ROOT = "media/"
-UPLOAD_ROOT = 'media/uploads/'
-MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
+# from google.oauth2 import service_account
+# GS_CREDENTIAL = service_account.Credentials.from_service_account_file(
+#     os.path.join(BASE_DIR/'credential.json')
+# )
+#
+#
+#
+# DEFAULT_FILE_STORAGE='storages.backends.gcloud.GoogleCloudStorage'
+# GS_PROJECT_ID = 'ccsm-402016'
+# GS_BUCKET_NAME = 'ccmidb'
+# MEDIA_ROOT = "media/"
+# UPLOAD_ROOT = 'media/uploads/'
+# MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
 
 #
 # DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
