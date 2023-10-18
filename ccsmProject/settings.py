@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+import os.path
+
 import pymysql
 
 
@@ -28,7 +30,7 @@ SECRET_KEY = 'django-insecure-ck^b6_*!+(ob!mfffrbi639@mk8-tl()hk(@!a%=0s)+1(8y9+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['3.16.156.18']
 
 
 pymysql.install_as_MySQLdb()
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_spanner',
     'corsheaders',
     'rest_framework',
     'ActualiteAPP.apps.ActualiteappConfig',
@@ -113,30 +116,42 @@ WSGI_APPLICATION = 'ccsmProject.wsgi.application'
 # }
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ccmi',
-        'USER': 'guigam',
-        'PASSWORD': 'ccmiadmin',
-        'HOST': 'guigam.mysql.pythonanywhere-services.com', # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': 'SET innodb_strict_mode=1',
-        },
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'ccmi',
+#         'USER': 'guigam',
+#         'PASSWORD': 'ccmiadmin',
+#         'HOST': 'guigam.mysql.pythonanywhere-services.com', # Or an IP Address that your DB is hosted on
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'init_command': 'SET innodb_strict_mode=1',
+#         },
+#     }
+# }
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.oracle',
-#         'NAME': 'ccmi',
-#         'USER': 'guigam',
-#         'PASSWORD': 'ccmi2023',
-#         'HOST': 'guigam.mysql.pythonanywhere-services.com',
-#         'PORT': '1521',
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'your_db_name',
+#         'USER': 'postgres',
+#         'PASSWORD': 'your_db_password',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
 #     }
 # }
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME' : 'ccmidb',
+        'USER': 'root',
+        'PASSWORD': 'ccmiadmin',
+        'HOST': 'localhost', # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
+     }
+}
 
 
 # Password validation
@@ -179,3 +194,23 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+from google.oauth2 import service_account
+GS_CREDENTIAL = service_account.Credentials.from_service_account_file(
+    os.path.join(BASE_DIR/'credential.json')
+)
+
+
+
+DEFAULT_FILE_STORAGE='storages.backends.gcloud.GoogleCloudStorage'
+GS_PROJECT_ID = 'ccsm-402016'
+GS_BUCKET_NAME = 'ccmidb'
+MEDIA_ROOT = "media/"
+UPLOAD_ROOT = 'media/uploads/'
+MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
+
+#
+# DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+# GS_BUCKET_NAME = 'ccmidb'
+# STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
