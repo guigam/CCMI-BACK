@@ -33,6 +33,18 @@ DEBUG = True
 ALLOWED_HOSTS = ['3.16.156.18']
 
 
+if os.environ.get('DJANGO_ENV') is not None:
+    SECURE_SSL_REDIRECT = False
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
+else:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+
+
 pymysql.install_as_MySQLdb()
 # Application definition
 
@@ -44,6 +56,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_spanner',
+    'django_extensions',
     'corsheaders',
     'rest_framework',
     'ActualiteAPP.apps.ActualiteappConfig',
