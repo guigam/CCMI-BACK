@@ -36,7 +36,7 @@ class Enfant(models.Model):
     ParentEnfant = models.ForeignKey(
         "Parent", on_delete=models.CASCADE)
     InscriptionEnfant = models.ForeignKey(
-        "Inscription", on_delete=models.CASCADE)
+        "Inscription", on_delete=models.CASCADE,null=True)
 
     def __str__(self):
         return self.PrenomEnfant + self.ParentEnfant.NomParent
