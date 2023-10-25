@@ -9,9 +9,9 @@ class Inscription(models.Model):
     InscriptionId = models.AutoField(primary_key=True)
     InscriptionTitle = models.CharField(max_length=250)
     InscriptionDescription = models.CharField(max_length=500)
-    InscriptionDateDebut = models.DateTimeField(auto_now_add=True)
-    InscriptionDateFin = models.DateTimeField(auto_now_add=True)
-    InscriptionDateMiseEnLigne = models.DateTimeField(auto_now_add=True)
+    InscriptionDateDebut = models.DateTimeField(auto_now=True, null=True)
+    InscriptionDateFin = models.DateTimeField(auto_now=True, null=True)
+    InscriptionDateMiseEnLigne = models.DateTimeField(auto_now=True, null=True)
     ParentInscription = models.ForeignKey(
         "Parent", on_delete=models.CASCADE)
     def __str__(self):
@@ -32,7 +32,7 @@ class Parent(models.Model):
 class Enfant(models.Model):
     EnfantID = models.AutoField(primary_key=True)
     PrenomEnfant = models.CharField(max_length=250)
-    DateNaissance = models.DateTimeField(auto_now_add=True)
+    DateNaissance = models.DateTimeField(aauto_now=True, null=True)
     gender = models.BooleanField() #garcon = 1
     ParentEnfant = models.ForeignKey(
         "Parent", on_delete=models.CASCADE)
