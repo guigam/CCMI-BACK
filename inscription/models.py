@@ -35,7 +35,7 @@ class Enfant(models.Model):
     gender = models.BooleanField() #garcon = 1
     ParentEnfant = models.ForeignKey(
         "Parent", on_delete=models.CASCADE)
-    Inscription = models.ForeignKey(
+    InscriptionEnfant = models.ForeignKey(
         "Inscription", on_delete=models.CASCADE)
 
     def __str__(self):
