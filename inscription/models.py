@@ -12,8 +12,7 @@ class Inscription(models.Model):
     InscriptionDateDebut = models.DateTimeField(auto_now=True, null=True)
     InscriptionDateFin = models.DateTimeField(auto_now=True, null=True)
     InscriptionDateMiseEnLigne = models.DateTimeField(auto_now=True, null=True)
-    ParentInscription = models.ForeignKey(
-        "Parent", on_delete=models.CASCADE)
+
     def __str__(self):
         return self.InscriptionTitle
 
@@ -36,6 +35,8 @@ class Enfant(models.Model):
     gender = models.BooleanField() #garcon = 1
     ParentEnfant = models.ForeignKey(
         "Parent", on_delete=models.CASCADE)
+    Inscription = models.ForeignKey(
+        "Inscription", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.PrenomEnfant + self.ParentEnfant.NomParent
