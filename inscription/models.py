@@ -5,13 +5,13 @@ from django.db import models
 
 
 # Create your models here.
-class Inscription(models.Model):
-    InscriptionId = models.AutoField(primary_key=True)
-    InscriptionTitle = models.CharField(max_length=250,null=True)
-    InscriptionDescription = models.CharField(max_length=500,null=True)
-    InscriptionDateDebut = models.DateTimeField(auto_now=True, null=True)
-    InscriptionDateFin = models.DateTimeField(auto_now=True, null=True)
-    InscriptionDateMiseEnLigne = models.DateTimeField(auto_now=True, null=True)
+class Saison(models.Model):
+    SaisonId = models.AutoField(primary_key=True)
+    SaisonTitle = models.CharField(max_length=250,null=True)
+    SaisonDescription = models.CharField(max_length=500,null=True)
+    SaisonDateDebut = models.DateTimeField(null=True)
+    SaisonDateFin = models.DateTimeField(null=True)
+    SaisonDateMiseEnLigne = models.DateTimeField(null=True)
 
     def __str__(self):
         return self.InscriptionTitle
@@ -34,9 +34,18 @@ class Enfant(models.Model):
     DateNaissance = models.DateTimeField(auto_now=True, null=True)
     gender = models.BooleanField() #garcon = 1
     ParentEnfant = models.ForeignKey(
-        "Parent", on_delete=models.CASCADE)
-    InscriptionEnfant = models.ForeignKey(
-        "Inscription", on_delete=models.CASCADE,null=True)
-
+        "Parent")
     def __str__(self):
         return self.PrenomEnfant + self.ParentEnfant.NomParent
+
+class Inscription(models.Model):
+    InscriptionID = models.AutoField(primary_key=True)
+    SaisonInscription = models.ForeignKey(
+        "Saison", null=True)
+    InscriptionEnfant = models.ForeignKey(
+        "Enfant", null=True)
+    def __str__(self):
+        return (self.SaisonInscription.SaisonTitle +
+                self.InscriptionEnfant.PrenomEnfant +
+                self.InscriptionEnfant.ParentEnfant.NomParent)
+
