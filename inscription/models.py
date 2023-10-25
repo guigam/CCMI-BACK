@@ -8,8 +8,6 @@ class Inscription(models.Model):
     ParentInscription = models.ForeignKey(
         "Parent", on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.InscriptionId  # What you want to sho
 
 
 class Parent(models.Model):
@@ -19,8 +17,6 @@ class Parent(models.Model):
     PhoneParent = models.CharField(max_length=100)
     EmailParent = models.CharField(max_length=250)
 
-    def __str__(self):
-        return self.NomParent + self.PrenomParent  # What you want to sho
 
 
 class Enfant(models.Model):
@@ -30,5 +26,3 @@ class Enfant(models.Model):
     gender = models.BooleanField() #garcon = 1
     ParentEnfant = models.ForeignKey(
         "Parent", on_delete=models.CASCADE)
-    def __str__(self):
-        return  self.PrenomEnfant + self.ParentEnfant.NomParent
