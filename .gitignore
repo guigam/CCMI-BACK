@@ -161,9 +161,4 @@ cython_debug/
 /ActualiteAPP/migrations/0001_initial.py
 /inscription/migrations/0001_initial.py
 /inscription/migrations/__init__.py
-/inscription/__init__.py
-/inscription/admin.py
-/inscription/apps.py
-/inscription/models.py
-/inscription/tests.py
-/inscription/views.py
+
