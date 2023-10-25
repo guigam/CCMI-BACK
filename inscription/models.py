@@ -7,8 +7,8 @@ from django.db import models
 # Create your models here.
 class Inscription(models.Model):
     InscriptionId = models.AutoField(primary_key=True)
-    InscriptionTitle = models.CharField(max_length=250)
-    InscriptionDescription = models.CharField(max_length=500)
+    InscriptionTitle = models.CharField(max_length=250,null=True)
+    InscriptionDescription = models.CharField(max_length=500,null=True)
     InscriptionDateDebut = models.DateTimeField(auto_now=True, null=True)
     InscriptionDateFin = models.DateTimeField(auto_now=True, null=True)
     InscriptionDateMiseEnLigne = models.DateTimeField(auto_now=True, null=True)
