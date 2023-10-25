@@ -41,9 +41,9 @@ class Enfant(models.Model):
 class Inscription(models.Model):
     InscriptionID = models.AutoField(primary_key=True)
     SaisonInscription = models.ForeignKey(
-        "Saison", null=True)
+        "Saison", null=True, on_delete=models.CASCADE)
     InscriptionEnfant = models.ForeignKey(
-        "Enfant", null=True)
+        "Enfant", null=True,on_delete=models.CASCADE)
     def __str__(self):
         return (self.SaisonInscription.SaisonTitle +
                 self.InscriptionEnfant.PrenomEnfant +
