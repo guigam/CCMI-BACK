@@ -7,9 +7,9 @@ class Inscription(models.Model):
     InscriptionId = models.AutoField(primary_key=True)
     InscriptionTitle = models.CharField(max_length=250)
     InscriptionDescription = models.CharField(max_length=500)
-    InscriptionDateDebut = models.DateTimeField()
-    InscriptionDateFin = models.DateTimeField()
-    InscriptionDateMiseEnLigne = models.DateTimeField()
+    InscriptionDateDebut = models.DateTimeField(blank=True)
+    InscriptionDateFin = models.DateTimeField(blank=True)
+    InscriptionDateMiseEnLigne = models.DateTimeField(blank=True)
     ParentInscription = models.ForeignKey(
         "Parent", on_delete=models.CASCADE)
     def __str__(self):
