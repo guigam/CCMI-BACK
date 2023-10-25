@@ -10,5 +10,7 @@ class Actualite(models.Model):
     ActualiteTag = models.CharField(max_length=250, blank=True)
     ActualiteDate = models.DateTimeField(blank=True)
     ActualiteImage = models.ImageField(upload_to='media/actualite/',blank=True)
+    def __str__(self):
+        return self.ActualiteTitle  # What you want to sho
 
 
