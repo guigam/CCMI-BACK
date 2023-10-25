@@ -38,7 +38,7 @@ class Enfant(models.Model):
     def __str__(self):
         return self.PrenomEnfant + self.ParentEnfant.NomParent
 
-class Inscription(models.Model):
+class InscriptionSaison(models.Model):
     InscriptionID = models.AutoField(primary_key=True)
     SaisonInscription = models.ForeignKey(
         "Saison", null=True, on_delete=models.CASCADE)
