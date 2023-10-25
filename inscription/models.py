@@ -32,7 +32,7 @@ class Parent(models.Model):
 class Enfant(models.Model):
     EnfantID = models.AutoField(primary_key=True)
     PrenomEnfant = models.CharField(max_length=250)
-    DateNaissance = models.DateTimeField(aauto_now=True, null=True)
+    DateNaissance = models.DateTimeField(auto_now=True, null=True)
     gender = models.BooleanField() #garcon = 1
     ParentEnfant = models.ForeignKey(
         "Parent", on_delete=models.CASCADE)
