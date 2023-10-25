@@ -5,9 +5,15 @@ from django.db import models
 # Create your models here.
 class Inscription(models.Model):
     InscriptionId = models.AutoField(primary_key=True)
+    InscriptionTitle = models.CharField(max_length=250)
+    InscriptionDescription = models.CharField(max_length=500)
+    InscriptionDateDebut = models.DateTimeField()
+    InscriptionDateFin = models.DateTimeField()
+    InscriptionDateMiseEnLigne = models.DateTimeField()
     ParentInscription = models.ForeignKey(
         "Parent", on_delete=models.CASCADE)
-
+    def __str__(self):
+        return self.InscriptionTitle
 
 
 class Parent(models.Model):
@@ -17,6 +23,8 @@ class Parent(models.Model):
     PhoneParent = models.CharField(max_length=100)
     EmailParent = models.CharField(max_length=250)
 
+    def __str__(self):
+        return self.PrenomParent + self.NomParent
 
 
 class Enfant(models.Model):
@@ -26,3 +34,6 @@ class Enfant(models.Model):
     gender = models.BooleanField() #garcon = 1
     ParentEnfant = models.ForeignKey(
         "Parent", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.PrenomEnfant + self.ParentEnfant.NomParent
